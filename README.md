@@ -1,6 +1,10 @@
 # random-code-generator
 timer on by verifying random code generator
 
+THIS IS ONLY THE SAMPLE FRONTEND CODE 
+I HAVE MADE THIS APPLICATION USING PYTHON FULL STACK BY DJANGO FRAMEWORK 
+ALL FILES ARE UPLOADED ANYONE CAN CHECK 
+
 <!doctype html>
 <html>
 <head>
