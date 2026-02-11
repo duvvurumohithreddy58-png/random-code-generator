@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Timer</title>
+</head>
+<body>
+
+<h2>Admin Mobile (Timer)</h2>
+
+<button onclick="generateCode()">Generate Code</button>
+<p>Code: <span id="code">----</span></p>
+
+<h3 id="timer">0</h3>
+
+<script>
+let timer = null;
+let count = 0;
+
+function generateCode() {
+  let code = Math.floor(1000 + Math.random() * 9000);
+  document.getElementById("code").innerText = code;
+
+  // STORE CODE IN DB
+  fetch(`/store-code/?code=${code}`);
+  count = 0;
+}
+
+function startTimer() {
+  if (timer) return;
+  timer = setInterval(() => {
+    count++;
+    document.getElementById("timer").innerText = count;
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timer);
+  timer = null;
+}
+
+setInterval(() => {
+  fetch("/status/")
+    .then(res => res.json())
+    .then(data => {
+      if (data.verified) startTimer();
+      else stopTimer();
+    });
+}, 1000);
+</script>
+
+</body>
+</html>
